@@ -1,0 +1,36 @@
+{
+    "constraints": null,
+    "needNFS": false,
+    "clusters": [
+        {
+            "nShards": 1,
+            "nInstances": 2,
+            "marathon": "https://marathon-lhr4.booking.com",
+            "domain": "",
+            "env": null
+        },
+        {
+            "nShards": 1,
+            "nInstances": 2,
+            "marathon": "https://marathon-ams4.booking.com",
+            "domain": "",
+            "env": null
+        }
+    ],
+    "app_type": "simple",
+    "registry_folder": "vkleshchenko",
+    "tool_version": "",
+    "local_volumes": [
+        {
+            "hostPath": "/etc/sysconfig/bookings.puppet",
+            "containerPath": "/etc/sysconfig/bookings.puppet",
+            "readwrite": false
+        }
+    ],
+    "tcp_ports": [
+        80
+    ],
+    "app_name": "sandbox",
+    "memory": 512,
+    "cpu": 1
+}

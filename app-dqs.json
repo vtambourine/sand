@@ -1,0 +1,31 @@
+{
+    "constraints": null,
+    "needNFS": false,
+    "clusters": [
+        {
+            "nShards": 1,
+            "nInstances": 1,
+            "marathon": "https://marathon.dev.booking.com",
+            "domain": "sandbox.dev.booking.com",
+            "env": null
+        }
+    ],
+    "app_type": "simple",
+    "registry_folder": "vkleshchenko",
+    "tool_version": "",
+    "local_volumes": [
+        {
+            "hostPath": "/etc/sysconfig/bookings.puppet",
+            "containerPath": "/etc/sysconfig/bookings.puppet",
+            "readwrite": false
+        }
+    ],
+
+    "tcp_ports": [
+        80
+    ],
+
+    "app_name": "sandbox",
+    "memory": 512,
+    "cpu": 1
+}
