@@ -4,4 +4,9 @@ MAINTAINER Veniamin Kleshchenkov <veniamin.kleshchenkov@booking.com>
 
 EXPOSE 80
 
-CMD ["/usr/bin/tail", "-f", "/var/log/messages"]
+RUN yum install -y nginx
+ADD ./nginx.conf /etc/nginx.conf
+ADD ./html /usr/share/nginx
+
+# CMD ["/usr/bin/tail", "-f", "/var/log/messages"]
+CMD ["/usr/sbin/nginx", "-c", "/etc/nginx.conf"]
