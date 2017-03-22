@@ -8,5 +8,23 @@ RUN yum install -y nginx
 ADD ./nginx.conf /etc/nginx.conf
 ADD ./html /usr/share/nginx
 
+RUN curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
+RUN yum install -y nodejs
+RUN curl -s https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
+RUN yum install -y yarn
+
+ENV PORT=3001
+ENV WORKDIR=/usr/src/sandbox
+RUN mkdir -p $WORKDIR
+WORKDIR $WORKDIR
+
+COPY package.json $WORKDIR
+RUN yarn install
+
+EXPOSE 3001
+
+COPY . $WORKDIR
+
 # CMD ["/usr/bin/tail", "-f", "/var/log/messages"]
-CMD ["/usr/sbin/nginx", "-c", "/etc/nginx.conf"]
+# CMD ["/usr/sbin/nginx", "-c", "/etc/nginx.conf"]
+CMD ./bootstrap.sh
