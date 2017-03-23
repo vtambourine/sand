@@ -12,7 +12,7 @@ ENV http_proxy=http://webproxy:3128/
 ENV https_proxy=$http_proxy
 
 # RUN curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
-# RUN yum install -y nodejs
+RUN yum install -y nodejs
 # RUN curl -s https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
 # RUN yum install -y yarn
 
