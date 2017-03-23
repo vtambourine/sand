@@ -16,7 +16,7 @@ RUN yum install -y nodejs
 # RUN curl -s https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
 # RUN yum install -y yarn
 
-RUN npm intstall -g yarn
+RUN npm install -g yarn
 
 ENV PORT=3001
 ENV WORKDIR=/usr/src/sandbox
