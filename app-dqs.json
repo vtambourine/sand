@@ -22,7 +22,8 @@
     ],
 
     "tcp_ports": [
-        80
+        80,
+        3001
     ],
 
     "app_name": "sandbox",

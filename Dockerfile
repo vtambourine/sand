@@ -2,21 +2,17 @@ FROM  docker-registry.booking.com/jenkins-built/centos-7:latest
 
 MAINTAINER Veniamin Kleshchenkov <veniamin.kleshchenkov@booking.com>
 
-EXPOSE 80
-
 RUN yum install -y nginx
 ADD ./nginx.conf /etc/nginx.conf
 ADD ./html /usr/share/nginx
 
-ENV http_proxy=http://webproxy:3128/
-ENV https_proxy=$http_proxy
+ENV HTTP_PROXY="http://webproxy:3128/"  \
+    HTTPS_PROXY="http://webproxy:3128/" \
+    http_proxy="http://webproxy:3128/"  \
+    https_proxy="http://webproxy:3128/"
 
-# RUN curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
 RUN yum install -y nodejs
-# RUN curl -s https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
-# RUN yum install -y yarn
-
-RUN npm install -g yarn
+# RUN npm install -g yarn
 
 ENV PORT=3001
 ENV WORKDIR=/usr/src/sandbox
@@ -24,11 +20,12 @@ RUN mkdir -p $WORKDIR
 WORKDIR $WORKDIR
 
 COPY package.json $WORKDIR
-RUN yarn install
+# RUN yarn install
 
+EXPOSE 80
 EXPOSE 3001
 
-COPY . $WORKDIR
+ADD . $WORKDIR
 
 # CMD ["/usr/bin/tail", "-f", "/var/log/messages"]
 # CMD ["/usr/sbin/nginx", "-c", "/etc/nginx.conf"]
