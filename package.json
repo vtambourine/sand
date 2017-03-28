@@ -1,0 +1,33 @@
+{
+  "name": "sand",
+  "version": "0.0.1",
+  "description": "Server-side template factory",
+  "main": "./dist/server/sand.js",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=6.9"
+  },
+  "scripts": {
+    "start": "start-runner -f start.js",
+    "build": "babel server -d dist/server",
+    "build:watch": ""
+  },
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-env": "^1.2.2",
+    "express": "^4.15.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "start": "^5.1.0",
+    "webpack": "^2.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "fly": "^2.0.5",
+    "fly-babel": "^2.1.1",
+    "start-babel": "^3.0.0",
+    "start-babel-cli": "^4.0.1",
+    "start-pretty-reporter": "^0.3.0"
+  }
+}

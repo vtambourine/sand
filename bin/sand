@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+// sand dev
+// sand start
+
+import { watchFile } from 'fs'
+
+console.log('done');
