@@ -15,8 +15,12 @@
   },
   "dependencies": {
     "babel": "^6.23.0",
+    "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-preset-env": "^1.2.2",
     "express": "^4.15.2",
+    "handlebars": "^4.0.6",
+    "minimist": "^1.2.0",
+    "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "start": "^5.1.0",

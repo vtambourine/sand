@@ -1,8 +1,32 @@
 #!/usr/bin/env node
 
-// sand dev
-// sand start
+import parseArgs from 'minimist';
+import Server from '../server';
+import Renderer from '../server/renderer';
+import HandlebarsRenderer from '../server/renderers/handlebars';
 
-import { watchFile } from 'fs'
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
-console.log('done');
+const argv = parseArgs(process.argv.slice(2), {
+  alias: {
+    h: 'hostname',
+    p: 'port'
+  },
+  string: [ 'h' ],
+  default: {
+    h: 'localhost',
+    p: '3001'
+  }
+});
+
+const renderer = new HandlebarsRenderer(process.cwd());
+const server = new Server(renderer);
+
+server.start(argv.port, argv.hostname)
+  .then(() => {
+    console.log(`[sand] Ready on http://${argv.hostname}:${argv.port}`);
+  })
+  .catch((error) => {
+    console.error('???', error);
+    process.exit(1);
+  });
