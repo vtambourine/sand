@@ -4,7 +4,6 @@ import Pug from 'pug';
 export default class Renderer {
 
   constructor(dir = process.cwd()) {
-    console.log('Dumping class name + ', this.constructor.name);
     this.directory = path.resolve(dir);
   }
 
@@ -29,7 +28,7 @@ export default class Renderer {
     return html;
   }
 
-  static renderErrorToHTML() {
+  renderErrorToHTML(request, response) {
     return "<h1>Error</h1>";
   }
 

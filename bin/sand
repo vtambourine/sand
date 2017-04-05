@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-
+import path from 'path';
 import parseArgs from 'minimist';
 import Server from '../server';
-import Renderer from '../server/renderer';
-import HandlebarsRenderer from '../server/renderers/handlebars';
+import BaseRenderer from '../server/base-renderer';
+import ReactRenderer from '../server/react-renderer';
+// import HandlebarsRenderer from '../server/renderers/handlebars';
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
@@ -19,7 +20,9 @@ const argv = parseArgs(process.argv.slice(2), {
   }
 });
 
-const renderer = new HandlebarsRenderer(process.cwd());
+// const renderer = new BaseRenderer(process.cwd());
+const componentsDir = path.join(process.cwd(), 'pages/templates');
+const renderer = new ReactRenderer(componentsDir);
 const server = new Server(renderer);
 
 server.start(argv.port, argv.hostname)

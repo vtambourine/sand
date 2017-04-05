@@ -1,6 +1,9 @@
 import { constants } from 'os';
+import url from 'url';
 import path from 'path';
+import querystring from 'querystring'
 import http, { STATUS_CODES } from 'http';
+import { RequestError } from './errors';
 
 export default class Server {
   constructor (renderer) {
@@ -8,13 +11,13 @@ export default class Server {
   }
 
   requestHandler (request, response) {
-    const parsedRequest = this.parseRequest(request);
-    return this.run(request, response, parsedRequest)
+    // const parsedRequest = this.parseRequest(request);
+    return this.run(request, response)
       .catch((error) => {
         response.statusCode = 500;
 
         const html = this.renderer.renderErrorToHTML(error);
-        // response.end(STATUS_CODES[500]);
+        response.end(STATUS_CODES[500]);
         response.end(html);
       });
   }
@@ -28,11 +31,12 @@ export default class Server {
     });
   }
 
-  async run (request, response, parsedRequest) {
+  async run (request, response) {
     if (response.finished) return;
 
-    var html;
+    let html;
     try {
+      const parsedRequest = this.parseRequest(request);
       html = await this.renderer.renderToHTML(parsedRequest);
     } catch(error) {
       html = await this.renderer.renderErrorToHTML(error);
@@ -43,24 +47,29 @@ export default class Server {
     response.end(html);
   }
 
-  async renderToHTML (request, response, payload) {
-    try {
-      // return await renderToHTML();
-      return await this.renderer.renderToHTML();
-    } catch (error) {
-      return await this.renderErrorToHTML(error, request, response, payload);
-    }
-  }
-
   parseRequest (request) {
+    const requestUrl = url.parse(request.url);
+
+    let { template, data } = querystring.parse(requestUrl.query);
+
+    if (!template) {
+      throw new RequestError('`template` parameter missing. Expected to be a string.');
+    }
+
+    if (!data) {
+      throw new RequestError('`data` parameter missing. Expected to be a valid JSON.');
+    }
+
+    try {
+      data = JSON.parse(data);
+    } catch (error) {
+      throw new RequestError('`data` expected to be a valid JSON.');
+    }
+
     return {
-      template: 'index',
-      data: {
-        title: 'Sandbox Page',
-        header: 'Humpty Dumpty',
-        content: 'Pew-pew-pew',
-        time: Date.now()
-      }
+      template,
+      data,
+      timestamp: Date.now()
     };
   }
 }
