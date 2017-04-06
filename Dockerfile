@@ -16,7 +16,7 @@ RUN touch /var/log/sandbox.log
 COPY .npmrc $WORKDIR
 
 RUN yum install -y nodejs
-RUN npm install -g yarn
+# RUN npm install -g yarn
 
 # ENV PORT=3001
 ENV WORKDIR=/usr/src/sandbox
@@ -24,7 +24,8 @@ RUN mkdir -p $WORKDIR
 WORKDIR $WORKDIR
 
 COPY package.json $WORKDIR
-RUN yarn install
+# RUN yarn install
+RUN ["npm", "--https-proxy=http://webproxy.corp.booking.com:3128", "install"]
 
 EXPOSE 80
 # EXPOSE 3001
