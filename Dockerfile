@@ -13,6 +13,8 @@ MAINTAINER Veniamin Kleshchenkov <veniamin.kleshchenkov@booking.com>
 
 RUN touch /var/log/sandbox.log
 
+COPY .npmrc $WORKDIR
+
 RUN yum install -y nodejs
 RUN npm install -g yarn
 
