@@ -15,7 +15,7 @@ const argv = parseArgs(process.argv.slice(2), {
   },
   string: [ 'h' ],
   default: {
-    h: 'localhost',
+    // h: '0.0.0.0',
     p: process.env.PORT || '80'
   }
 });
@@ -27,7 +27,7 @@ const server = new Server(renderer);
 
 server.start(argv.port, argv.hostname)
   .then(() => {
-    console.log(`[sand] Ready on http://${argv.hostname}:${argv.port}`);
+    console.log(`[sand] Ready on http://${argv.hostname || 'localhost'}:${argv.port}`);
   })
   .catch((error) => {
     console.error('???', error);
