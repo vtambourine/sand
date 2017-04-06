@@ -26,6 +26,6 @@
     ],
 
     "app_name": "sandbox",
-    "memory": 512,
+    "memory": 1024,
     "cpu": 1
 }
