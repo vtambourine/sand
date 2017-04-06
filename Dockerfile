@@ -12,7 +12,7 @@ ENV HTTP_PROXY="http://webproxy:3128/"  \
     https_proxy="http://webproxy:3128/"
 
 RUN yum install -y nodejs
-# RUN npm install -g yarn
+RUN npm install -g yarn
 
 # ENV PORT=3001
 ENV WORKDIR=/usr/src/sandbox
@@ -20,7 +20,7 @@ RUN mkdir -p $WORKDIR
 WORKDIR $WORKDIR
 
 COPY package.json $WORKDIR
-# RUN yarn install
+RUN yarn install
 
 EXPOSE 80
 # EXPOSE 3001
