@@ -6,14 +6,14 @@
             "nShards": 1,
             "nInstances": 2,
             "marathon": "https://marathon-lhr4.booking.com",
-            "domain": "",
+            "domain": "vkleshchenko-sandbox-lhr4.prod.booking.com",
             "env": null
         },
         {
             "nShards": 1,
             "nInstances": 2,
             "marathon": "https://marathon-ams4.booking.com",
-            "domain": "",
+            "domain": "vkleshchenko-sandbox-ams4.prod.booking.com",
             "env": null
         }
     ],
