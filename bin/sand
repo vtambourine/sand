@@ -16,7 +16,7 @@ const argv = parseArgs(process.argv.slice(2), {
   string: [ 'h' ],
   default: {
     // h: '0.0.0.0',
-    p: process.env.PORT || '80'
+    p: process.env.APP_PORT || '80'
   }
 });
 
