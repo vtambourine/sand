@@ -6,10 +6,12 @@ MAINTAINER Veniamin Kleshchenkov <veniamin.kleshchenkov@booking.com>
 #ADD ./nginx.conf /etc/nginx.conf
 #ADD ./html /usr/share/nginx
 
-ENV HTTP_PROXY="http://webproxy:3128/"  \
-    HTTPS_PROXY="http://webproxy:3128/" \
-    http_proxy="http://webproxy:3128/"  \
-    https_proxy="http://webproxy:3128/"
+#ENV HTTP_PROXY="http://webproxy:3128/"  \
+#    HTTPS_PROXY="http://webproxy:3128/" \
+#    http_proxy="http://webproxy:3128/"  \
+#    https_proxy="http://webproxy:3128/"
+
+RUN touch /var/log/sandbox.log
 
 RUN yum install -y nodejs
 RUN npm install -g yarn
