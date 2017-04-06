@@ -27,7 +27,7 @@ export default class Server {
     await new Promise((resolve, reject) => {
       this.server.on('error', reject);
       this.server.on('listening', () => resolve());
-      this.server.listen(port, hostname);
+      this.server.listen(port);
     });
   }
 

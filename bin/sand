@@ -25,7 +25,7 @@ const componentsDir = path.join(process.cwd(), 'pages/templates');
 const renderer = new ReactRenderer(componentsDir);
 const server = new Server(renderer);
 
-server.start(argv.port, argv.hostname)
+server.start(argv.port)
   .then(() => {
     console.log(`[sand] Ready on http://${argv.hostname || 'localhost'}:${argv.port}`);
   })
